@@ -292,6 +292,7 @@ export default {
                         overflow: hidden;
                         z-index: 10;
                         transition: all 0.5s;
+                        background: #ffffff;
                         .pro-list {
                             display: flex;
                             justify-content: space-evenly;
