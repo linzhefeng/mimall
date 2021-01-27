@@ -1,23 +1,21 @@
 <template>
-    <div>
-        <div class="footer">
-            <div class="footer-logo">
-                <img src="/imgs/logo-footer.png" alt="" />
-                <p>小米商城</p>
-            </div>
-            <div class="footer-link">
-                <a href="https://github.com/linzhefeng/mimall" target="_blank"
-                    >github仓库</a
-                >
-                <a href="javascript:;">关于小米</a>
-                <a href="javascript:;">简介</a>
-                <a href="javascript:;">关于</a>
-            </div>
-            <div class="copyright">
-                © mi.com 京ICP证110507号 京ICP备10046444号
-                京公网安备11010802020134号 京网文[2020]0276-042号
-                <!-- <span class="domain"></span> -->
-            </div>
+    <div class="footer">
+        <div class="footer-logo">
+            <img src="/imgs/logo-footer.png" alt="" />
+            <p>小米商城</p>
+        </div>
+        <div class="footer-link">
+            <a href="https://github.com/linzhefeng/mimall" target="_blank"
+                >GitHub仓库</a
+            >
+            <a href="javascript:;">关于小米</a>
+            <a href="javascript:;">简介</a>
+            <a href="javascript:;">关于</a>
+        </div>
+        <div class="copyright">
+            © mi.com 京ICP证110507号 京ICP备10046444号
+            京公网安备11010802020134号 京网文[2020]0276-042号
+            <!-- <span class="domain"></span> -->
         </div>
     </div>
 </template>
