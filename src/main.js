@@ -6,7 +6,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 
 // mock开关 不是所有情况都要mock 只是在开发阶段需要
-const mock = true
+const mock = false
 if (mock) {
     // import是预加载 不要用import
     // require执行的时候才会加载

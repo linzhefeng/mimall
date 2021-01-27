@@ -1,7 +1,5 @@
 <template>
-    <div>
-        index
-    </div>
+    <div></div>
 </template>
 
 <script>
@@ -12,11 +10,7 @@ export default {
         }
     },
     methods: {},
-    mounted() {
-        this.axios.get('user/login').then(res => {
-            this.res = res
-        })
-    }
+    mounted() {}
 }
 </script>
 <style></style>
