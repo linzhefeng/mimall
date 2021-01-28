@@ -22,7 +22,7 @@
         <div class="nav-header">
             <div class="container">
                 <div class="header-logo">
-                    <a href="/#/index"></a>
+                    <a href="/index"></a>
                 </div>
                 <div class="header-menu">
                     <div class="item-menu">
@@ -330,7 +330,7 @@ export default {
                                 content: '';
                                 position: absolute;
                                 top: 28px;
-                                right: 0;
+                                right: -22px;
                                 border-left: 1px solid $colorF;
                                 height: 100px;
                                 width: 1px;
