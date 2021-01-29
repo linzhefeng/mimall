@@ -11,7 +11,9 @@
                                     <li v-for="(sub, j) in item" :key="j">
                                         <a
                                             :href="
-                                                sub ? '/product/' + sub.id : ''
+                                                sub
+                                                    ? '/#/product/' + sub.id
+                                                    : ''
                                             "
                                         >
                                             <img
@@ -33,7 +35,7 @@
                             <div class="children">
                                 <ul v-for="(item, i) in dynMenuList" :key="i">
                                     <li v-for="(obj, j) in item" :key="j">
-                                        <a :href="'/product/' + obj.id">
+                                        <a :href="'/#/product/' + obj.id">
                                             <img :src="obj.mainImage" alt="" />
                                             {{ obj.name }}
                                         </a>
@@ -63,7 +65,7 @@
                 </div>
                 <swiper ref="mySwiper" :options="swiperOptions">
                     <swiper-slide v-for="item in slideList" :key="item.id">
-                        <a :href="'/product/' + item.id"
+                        <a :href="'/#/product/' + item.id"
                             ><img :src="item.img" alt=""
                         /></a>
                     </swiper-slide>
@@ -74,7 +76,7 @@
             </div>
             <div class="ads-box">
                 <a
-                    v-bind:href="'/product/' + item.id"
+                    v-bind:href="'/#/product/' + item.id"
                     v-for="(item, index) in adsList"
                     v-bind:key="index"
                 >
@@ -82,7 +84,7 @@
                 </a>
             </div>
             <div class="banner">
-                <a href="/product/30">
+                <a href="/#/product/30">
                     <img src="/imgs/banner-1.png" alt=""
                 /></a>
             </div>
@@ -92,7 +94,7 @@
                 <h2>手机</h2>
                 <div class="wrapper">
                     <div class="banner-left">
-                        <a href="/product/35">
+                        <a href="/#/product/35">
                             <img src="/imgs/mix-alpha.jpg" alt="" />
                         </a>
                     </div>
@@ -113,7 +115,9 @@
                                 <div class="item-info">
                                     <h3>{{ item.name }}</h3>
                                     <p>{{ item.subtitle }}</p>
-                                    <p class="price">{{ item.price }} 元</p>
+                                    <p class="price" @click="addCart(item.id)">
+                                        {{ item.price }} 元
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -128,6 +132,8 @@
             btnType="1"
             modalType="middle"
             :showModal="showModal"
+            @submit="goToCart"
+            @cancle="showModal = false"
         >
             <template v-slot:body>
                 <div>
@@ -148,7 +154,7 @@ import Modal from '../components/Modal.vue'
 export default {
     data() {
         return {
-            showModal: true,
+            showModal: false,
             swiperOptions: {
                 // https://www.swiper.com.cn/api/pagination/363.html
                 loop: true,
@@ -271,6 +277,21 @@ export default {
             // 因为接口前几个数据有问题,所以要截掉
             res.list.splice(0, 4)
             this.phoneList = [res.list.slice(0, 4), res.list.slice(4, 8)]
+        },
+        async addCart(id) {
+            this.showModal = true
+            // try {
+            //     await this.axios.post('/carts', {
+            //         productId: id,
+            //         selected: true
+            //     })
+            // } catch (error) {
+            //     alert(error)
+            // }
+        },
+        goToCart() {
+            // 通过push就不用加#
+            this.$router.push('/cart')
         }
     },
     mounted() {

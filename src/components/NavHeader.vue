@@ -22,7 +22,7 @@
         <div class="nav-header">
             <div class="container">
                 <div class="header-logo">
-                    <a href="/index"></a>
+                    <a href="/#/index"></a>
                 </div>
                 <div class="header-menu">
                     <div class="item-menu">
@@ -35,7 +35,7 @@
                                     :key="item.id"
                                 >
                                     <a
-                                        :href="'/product/' + item.id"
+                                        :href="'/#/product/' + item.id"
                                         target="_blank"
                                     >
                                         <div class="pro-img">
