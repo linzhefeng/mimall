@@ -5,7 +5,7 @@
             <div class="mask"></div>
             <div class="modal-dialog">
                 <div class="modal-header">
-                    <span>标题</span>
+                    <span>{{ title }}</span>
                     <a
                         href="javascript:;"
                         class="icon-close"
@@ -21,18 +21,18 @@
                         class="btn"
                         v-if="btnType == 1"
                         @click="$emit('submit')"
-                        >确定</a
+                        >{{ sureText }}</a
                     >
                     <a
                         href="javascript:;"
                         class="btn"
                         v-if="btnType == 2"
                         @click="$emit('cancle')"
-                        >取消</a
+                        >{{ cancleText }}</a
                     >
                     <div class="btn-group" v-if="btnType == 3">
-                        <a href="javascript:;" class="btn">确定</a>
-                        <a href="javascript:;" class="btn">取消</a>
+                        <a href="javascript:;" class="btn">{{ sureText }}</a>
+                        <a href="javascript:;" class="btn">{{ cancleText }}</a>
                     </div>
                 </div>
             </div>
