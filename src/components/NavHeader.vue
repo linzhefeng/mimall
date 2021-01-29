@@ -40,7 +40,7 @@
                                     >
                                         <div class="pro-img">
                                             <img
-                                                :src="item.mainImage"
+                                                v-lazy="item.mainImage"
                                                 :alt="item.subtitle"
                                             />
                                         </div>
@@ -69,7 +69,10 @@
                                         target="_blank"
                                     >
                                         <div class="pro-img">
-                                            <img :src="item.mainImage" alt="" />
+                                            <img
+                                                v-lazy="item.mainImage"
+                                                alt=""
+                                            />
                                         </div>
                                         <div class="pro-name">
                                             {{ item.name }}
@@ -93,7 +96,7 @@
                                 >
                                     <a href="" target="_blank">
                                         <div class="pro-img">
-                                            <img :src="item.img" alt="" />
+                                            <img v-lazy="item.img" alt="" />
                                         </div>
                                         <div class="pro-name">
                                             {{ item.name }}
@@ -122,7 +125,7 @@
 export default {
     data() {
         return {
-            username: 'jack',
+            username: '',
             product: {
                 phoneList: [],
                 tvList: [

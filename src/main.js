@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import VueLazyLoad from 'vue-lazyload'
 
 // mock开关 不是所有情况都要mock 只是在开发阶段需要
 const mock = false
@@ -32,6 +33,11 @@ axios.interceptors.response.use(function(response) {
 })
 
 Vue.use(VueAxios, axios)
+Vue.use(VueLazyLoad, {
+    // 图片加载的动画
+    loading: '/imgs/loading-svg/loading-bars.svg'
+})
+
 Vue.config.productionTip = false
 
 new Vue({
