@@ -5,6 +5,7 @@ import store from './store'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueLazyLoad from 'vue-lazyload'
+import VueCookie from 'vue-cookie'
 
 // mock开关 不是所有情况都要mock 只是在开发阶段需要
 const mock = false
@@ -28,11 +29,13 @@ axios.interceptors.response.use(function(response) {
     } else if (res.status == 10) {
         window.location.href = '/#/login'
     } else {
-        alert(res.msg)
+        // alert(res.msg)
+        return Promise.reject(res.msg)
     }
 })
 
 Vue.use(VueAxios, axios)
+Vue.use(VueCookie)
 Vue.use(VueLazyLoad, {
     // 图片加载的动画
     loading: '/imgs/loading-svg/loading-bars.svg'
