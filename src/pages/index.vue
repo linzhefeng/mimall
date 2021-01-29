@@ -86,9 +86,55 @@
                     <img src="/imgs/banner-1.png" alt=""
                 /></a>
             </div>
-            <div class="product-box"></div>
+        </div>
+        <div class="product-box">
+            <div class="container">
+                <h2>手机</h2>
+                <div class="wrapper">
+                    <div class="banner-left">
+                        <a href="/product/35">
+                            <img src="/imgs/mix-alpha.jpg" alt="" />
+                        </a>
+                    </div>
+                    <div class="list-box">
+                        <div
+                            class="list"
+                            v-for="(arr, i) in phoneList"
+                            :key="i"
+                        >
+                            <div class="item" v-for="(item, j) in arr" :key="j">
+                                <span
+                                    :class="j % 2 == 0 ? 'new-pro' : 'kill-pro'"
+                                    >新品</span
+                                >
+                                <div class="item-img">
+                                    <img :src="item.mainImage" alt="" />
+                                </div>
+                                <div class="item-info">
+                                    <h3>{{ item.name }}</h3>
+                                    <p>{{ item.subtitle }}</p>
+                                    <p class="price">{{ item.price }} 元</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <service-bar></service-bar>
+        <modal
+            title="提示"
+            sureText="查看购物车"
+            btnType="1"
+            modalType="middle"
+            :showModal="showModal"
+        >
+            <template v-slot:body>
+                <div>
+                    sss
+                </div>
+            </template>
+        </modal>
     </div>
 </template>
 
@@ -97,10 +143,12 @@ import ServiceBar from '../components/ServiceBar.vue'
 import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
 
 import 'swiper/css/swiper.css'
+import Modal from '../components/Modal.vue'
 
 export default {
     data() {
         return {
+            showModal: true,
             swiperOptions: {
                 // https://www.swiper.com.cn/api/pagination/363.html
                 loop: true,
@@ -185,14 +233,20 @@ export default {
                     id: 47,
                     img: '/imgs/ads/ads-4.jpg'
                 }
+            ],
+            phoneList: [
+                [1, 1, 1, 1],
+                [1, 1, 1, 1]
             ]
         }
     },
     components: {
         ServiceBar,
         Swiper,
-        SwiperSlide
+        SwiperSlide,
+        Modal
     },
+
     methods: {
         async getProductList() {
             const res = await this.axios.get('/products', {
@@ -206,10 +260,22 @@ export default {
                 let temp = res.list.splice(0, 4)
                 this.dynMenuList.push(temp)
             }
+        },
+        async getPhoneList() {
+            const res = await this.axios.get('/products', {
+                params: {
+                    categoryID: 100012,
+                    pageSize: 12
+                }
+            })
+            // 因为接口前几个数据有问题,所以要截掉
+            res.list.splice(0, 4)
+            this.phoneList = [res.list.slice(0, 4), res.list.slice(4, 8)]
         }
     },
     mounted() {
         this.getProductList()
+        this.getPhoneList()
     }
 }
 </script>
@@ -310,6 +376,92 @@ export default {
     }
     .banner {
         margin-bottom: 50px;
+    }
+    .product-box {
+        background-color: $colorJ;
+        padding: 30px 0 50px;
+        h2 {
+            font-size: $fontF;
+            height: 21px;
+            line-height: 21px;
+            color: $colorB;
+            margin-bottom: 20px;
+        }
+        .wrapper {
+            display: flex;
+            .banner-left {
+                margin-right: 16px;
+                img {
+                    width: 224px;
+                    height: 619px;
+                }
+            }
+            .list-box {
+                .list {
+                    @include flex();
+                    width: 986px;
+                    margin-bottom: 14px;
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                    .item {
+                        width: 236px;
+                        height: 302px;
+                        background-color: $colorG;
+                        text-align: center;
+                        span {
+                            display: inline-block;
+                            width: 67px;
+                            height: 24px;
+                            font-size: 14px;
+                            line-height: 24px;
+                            color: $colorG;
+                            &.new-pro {
+                                background-color: #7ecf68;
+                            }
+                            &.kill-pro {
+                                background-color: #e82626;
+                            }
+                        }
+                        .item-img {
+                            img {
+                                width: 100%;
+                                height: 195px;
+                            }
+                        }
+                        .item-info {
+                            h3 {
+                                font-size: $fontJ;
+                                color: $colorB;
+                                line-height: $fontJ;
+                                font-weight: bold;
+                            }
+                            p {
+                                color: $colorD;
+                                line-height: 13px;
+                                margin: 6px auto 13px;
+                            }
+                            .price {
+                                color: #f20a0a;
+                                font-size: $fontJ;
+                                font-weight: bold;
+                                cursor: pointer;
+                                &:after {
+                                    @include bgImg(
+                                        22px,
+                                        22px,
+                                        '/imgs/icon-cart-hover.png'
+                                    );
+                                    content: ' ';
+                                    margin-left: 5px;
+                                    vertical-align: middle;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 </style>
