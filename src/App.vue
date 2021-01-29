@@ -4,6 +4,7 @@
     </div>
 </template>
 
-<style>
+<style lang="scss">
 @import './assets/scss/reset.scss';
+@import './assets/scss/btn.scss';
 </style>
