@@ -14,7 +14,7 @@
                     <a href="javascript:;" v-if="username">我的订单</a>
                     <a href="javascript:;" @click="goToCart" class="my-cart">
                         <span class="icon-cart"></span>
-                        购物车</a
+                        购物车{{ cartCount }}</a
                     >
                 </div>
             </div>
@@ -122,10 +122,10 @@
 </template>
 
 <script>
+// import { mapState } from 'vuex'
 export default {
     data() {
         return {
-            username: '',
             product: {
                 phoneList: [],
                 tvList: [
@@ -175,6 +175,15 @@ export default {
             if (!val) return '0.00'
             return val.toFixed(2) + '元起'
         }
+    },
+    computed: {
+        username() {
+            return this.$store.state.username
+        },
+        cartCount() {
+            return this.$store.state.cartCount
+        }
+        // ...mapState(['username', 'cartCount'])
     },
     mounted() {
         this.getProductList()

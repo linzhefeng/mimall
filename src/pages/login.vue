@@ -66,6 +66,7 @@
     </div>
 </template>
 <script>
+// 导入mapAction 演示一下 其实简单的项目没有必要
 import { mapActions } from 'vuex'
 export default {
     name: 'login',
@@ -88,12 +89,17 @@ export default {
                 .then(res => {
                     this.$cookie.set('userId', res.id, { expires: '1M' })
                     //TODO 保存用户名
+                    // 触发一个action
+                    // this.$store.dispatch('saveUserName', res.username)
+                    // 用mapActions
+                    this.saveUserName(res.username)
                     this.$router.push('/index')
                 })
                 .catch(err => {
                     alert(err)
                 })
         },
+        ...mapActions(['saveUserName']),
         register() {
             this.axios
                 .post('/user/register', {

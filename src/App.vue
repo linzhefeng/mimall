@@ -11,11 +11,14 @@ export default {
     },
     methods: {
         async getUser() {
-            await this.axios.get('/user')
+            const res = await this.axios.get('/user')
             //    TODO 保存到vuex里面
+            this.$store.dispatch('saveUserName', res.username)
         },
-        async getCartCount() {
-            await this.axios.get('/carts/products/sum')
+        getCartCount() {
+            this.axios.get('/carts/products/sum').then(res => {
+                this.$store.dispatch('saveCartCount', res)
+            })
         }
     }
 }
