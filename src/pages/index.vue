@@ -138,7 +138,7 @@
         >
             <template v-slot:body>
                 <div>
-                    sss
+                    添加购物车成功
                 </div>
             </template>
         </modal>
@@ -279,17 +279,21 @@ export default {
             res.list.splice(0, 4)
             this.phoneList = [res.list.slice(0, 4), res.list.slice(4, 8)]
         },
-        async addCart(id) {
-            this.showModal = true
-            // try {
-            //     await this.axios.post('/carts', {
-            //         productId: id,
-            //         selected: true
-            //     })
-            // } catch (error) {
-            //     alert(error)
-            // }
+        addCart(id) {
+            const res = this.axios
+                .post('/carts', {
+                    productId: id,
+                    selected: true
+                })
+                .then(res => {
+                    this.showModal = true
+                    this.$store.dispatch('saveCartCount', res.cartTotalQuantity)
+                })
+                .catch(error => {
+                    alert(error)
+                })
         },
+
         goToCart() {
             // 通过push就不用加#
             this.$router.push('/cart')

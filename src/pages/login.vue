@@ -88,7 +88,6 @@ export default {
                 })
                 .then(res => {
                     this.$cookie.set('userId', res.id, { expires: '1M' })
-                    //TODO 保存用户名
                     // 触发一个action
                     // this.$store.dispatch('saveUserName', res.username)
                     // 用mapActions

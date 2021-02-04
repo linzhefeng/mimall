@@ -31,6 +31,7 @@ axios.interceptors.response.use(function(response) {
         if (path != '#/index' && path != '#/') {
             window.location.href = '/#/login'
         }
+        return Promise.reject('请登录')
     } else {
         // alert(res.msg)
         return Promise.reject(res.msg)
