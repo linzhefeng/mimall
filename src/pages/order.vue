@@ -1,6 +1,5 @@
 <template>
     <div>
-        order
         <order-header></order-header>
         <router-view></router-view>
         <nav-footer></nav-footer>
@@ -9,7 +8,7 @@
 
 <script>
 import NavFooter from '../components/NavFooter.vue'
-import orderHeader from '../components/orderHeader.vue'
+import OrderHeader from '../components/OrderHeader'
 export default {
     components: { orderHeader, NavFooter },
     data() {
