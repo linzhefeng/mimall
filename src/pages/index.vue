@@ -290,7 +290,7 @@ export default {
                     this.$store.dispatch('saveCartCount', res.cartTotalQuantity)
                 })
                 .catch(error => {
-                    alert(error)
+                    this.$message.error(error)
                 })
         },
 

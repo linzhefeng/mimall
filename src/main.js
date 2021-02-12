@@ -6,6 +6,12 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueLazyLoad from 'vue-lazyload'
 import VueCookie from 'vue-cookie'
+import ElementUI from 'element-ui'
+import { Message } from 'element-ui'
+import './styles.scss'
+
+Vue.use(ElementUI)
+Vue.prototype.$message = Message
 
 // mock开关 不是所有情况都要mock 只是在开发阶段需要
 const mock = false
@@ -33,7 +39,6 @@ axios.interceptors.response.use(function(response) {
         }
         return Promise.reject('请登录')
     } else {
-        // alert(res.msg)
         return Promise.reject(res.msg)
     }
 })

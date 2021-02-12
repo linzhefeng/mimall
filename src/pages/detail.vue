@@ -150,7 +150,7 @@ export default {
                     // this.$router.push('/cart');
                 })
                 .catch(err => {
-                    alert(err)
+                    this.$message.error(err)
                 })
         }
     }

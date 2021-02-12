@@ -95,7 +95,7 @@ export default {
                     this.$router.push('/index')
                 })
                 .catch(err => {
-                    alert(err)
+                    this.$message.error(err)
                 })
         },
         ...mapActions(['saveUserName']),
@@ -108,10 +108,10 @@ export default {
                     email: '123456@163.com'
                 })
                 .then(() => {
-                    alert('注册成功')
+                    this.$message.success('注册成功')
                 })
                 .catch(err => {
-                    alert(err)
+                    this.$message.error(err)
                 })
         }
     }
