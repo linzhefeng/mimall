@@ -190,7 +190,10 @@ export default {
     },
     mounted() {
         this.getProductList()
-        this.getCartCount()
+        let params = this.$route.params
+        if (params && params.from === 'login') {
+            this.getCartCount()
+        }
     },
     methods: {
         async getProductList() {

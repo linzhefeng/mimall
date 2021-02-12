@@ -6,8 +6,10 @@
 <script>
 export default {
     mounted() {
-        this.getUser()
-        this.getCartCount()
+        if (this.$cookie.get('userId')) {
+            this.getUser()
+            this.getCartCount()
+        }
     },
     methods: {
         async getUser() {

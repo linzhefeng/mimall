@@ -87,12 +87,17 @@ export default {
                     password
                 })
                 .then(res => {
-                    this.$cookie.set('userId', res.id, { expires: '1M' })
+                    this.$cookie.set('userId', res.id, { expires: 'Session' })
                     // 触发一个action
                     // this.$store.dispatch('saveUserName', res.username)
                     // 用mapActions
                     this.saveUserName(res.username)
-                    this.$router.push('/index')
+                    this.$router.push({
+                        name: 'index',
+                        params: {
+                            from: 'login'
+                        }
+                    })
                 })
                 .catch(err => {
                     this.$message.error(err)
