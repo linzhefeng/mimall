@@ -14,7 +14,7 @@
                     <a href="javascript:;" v-if="username" @click="logout"
                         >退出</a
                     >
-                    <a href="javascript:;" v-if="username">我的订单</a>
+                    <a href="/#/order/list" v-if="username">我的订单</a>
                     <a href="javascript:;" @click="goToCart" class="my-cart">
                         <span class="icon-cart"></span>
                         购物车{{ cartCount }}</a
@@ -191,6 +191,7 @@ export default {
     mounted() {
         this.getProductList()
         let params = this.$route.params
+        // 如果是从登陆界面跳转,需要获取一下购物车数量
         if (params && params.from === 'login') {
             this.getCartCount()
         }
@@ -301,6 +302,7 @@ export default {
                         opacity: 0;
                         overflow: hidden;
                         z-index: 10;
+                        // 动画时间
                         transition: all 0.5s;
                         background: #ffffff;
                         .pro-list {

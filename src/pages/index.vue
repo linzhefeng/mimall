@@ -134,7 +134,7 @@
             modalType="middle"
             :showModal="showModal"
             @submit="goToCart"
-            @cancle="showModal = false"
+            @cancel="showModal = false"
         >
             <template v-slot:body>
                 <div>

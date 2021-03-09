@@ -9,7 +9,7 @@
                     <a
                         href="javascript:;"
                         class="icon-close"
-                        @click="$emit('cancle')"
+                        @click="$emit('cancel')"
                     ></a>
                 </div>
                 <div class="modal-body">
@@ -27,12 +27,22 @@
                         href="javascript:;"
                         class="btn"
                         v-if="btnType == 2"
-                        @click="$emit('cancle')"
-                        >{{ cancleText }}</a
+                        @click="$emit('cancel')"
+                        >{{ cancelText }}</a
                     >
                     <div class="btn-group" v-if="btnType == 3">
-                        <a href="javascript:;" class="btn">{{ sureText }}</a>
-                        <a href="javascript:;" class="btn">{{ cancleText }}</a>
+                        <a
+                            href="javascript:;"
+                            class="btn"
+                            @click="$emit('submit')"
+                            >{{ sureText }}</a
+                        >
+                        <a
+                            href="javascript:;"
+                            class="btn btn-default"
+                            @click="$emit('cancel')"
+                            >{{ cancelText }}</a
+                        >
                     </div>
                 </div>
             </div>
@@ -58,7 +68,7 @@ export default {
         },
         cancelText: {
             type: String,
-            default: '确定'
+            default: '取消'
         },
         showModal: Boolean
     },

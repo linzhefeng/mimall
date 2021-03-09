@@ -29,19 +29,26 @@ axios.defaults.timeout = 8000
 
 // 错误拦截
 let path = location.hash
-axios.interceptors.response.use(function(response) {
-    let res = response.data
-    if (res.status == 0) {
-        return res.data
-    } else if (res.status == 10) {
-        if (path != '#/index' && path != '#/') {
-            window.location.href = '/#/login'
+axios.interceptors.response.use(
+    function(response) {
+        let res = response.data
+        if (res.status == 0) {
+            return res.data
+        } else if (res.status == 10) {
+            if (path != '#/index' && path != '#/') {
+                window.location.href = '/#/login'
+            }
+            return Promise.reject('请登录')
+        } else {
+            return Promise.reject(res.msg)
         }
-        return Promise.reject('请登录')
-    } else {
-        return Promise.reject(res.msg)
+    },
+    error => {
+        let res = error.response
+        Message.error(res.data.message)
+        return Promise.reject(error)
     }
-})
+)
 
 Vue.use(VueAxios, axios)
 Vue.use(VueCookie)

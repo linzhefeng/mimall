@@ -210,6 +210,7 @@ export default {
                     opacity: 0.4;
                     z-index: 10;
                 }
+                // c3动画
                 @keyframes slideDown {
                     from {
                         top: -50%;
@@ -239,6 +240,7 @@ export default {
                     width: 1000px;
                     height: 536px;
                     opacity: 1;
+                    // 动画
                     &.slideDown {
                         animation: slideDown 0.6s linear;
                         top: 50%;

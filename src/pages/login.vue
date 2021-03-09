@@ -94,6 +94,7 @@ export default {
                     this.saveUserName(res.username)
                     this.$router.push({
                         name: 'index',
+                        // params不会被放在url中 query会
                         params: {
                             from: 'login'
                         }
@@ -108,9 +109,9 @@ export default {
             this.axios
                 .post('/user/register', {
                     //TODO 动态注册
-                    username: '123123',
-                    password: '123123',
-                    email: '123456@163.com'
+                    username: 'lzflzf',
+                    password: 'lzflzf',
+                    email: 'lzflzf@163.com'
                 })
                 .then(() => {
                     this.$message.success('注册成功')

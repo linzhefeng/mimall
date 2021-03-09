@@ -7,7 +7,7 @@
             <div class="title">
                 <h2>
                     {{ title }}
-                    <slot name="tips"></slot>
+                    <slot name="tip"></slot>
                 </h2>
             </div>
             <div class="username">
