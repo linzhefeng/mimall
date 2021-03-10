@@ -30,7 +30,7 @@
                         >
                     </div>
                     <div class="tips">
-                        <div class="sms" @click="register">
+                        <div class="sms" @click="showModal = true">
                             手机短信登录/注册
                         </div>
                         <div class="reg">立即注册<span>|</span>忘记密码？</div>
@@ -63,18 +63,49 @@
                 Copyright ©2019 mi.futurefe.com All Rights Reserved.
             </p>
         </div>
+        <modal
+            title="注册"
+            btnType="3"
+            :showModal="showModal"
+            @submit="register"
+            @cancel="showModal = false"
+        >
+            <template v-slot:body>
+                <div class="input">
+                    <input
+                        type="text"
+                        placeholder="请输入账号"
+                        v-model="rusername"
+                    />
+                </div>
+                <div class="input">
+                    <input
+                        type="text"
+                        placeholder="请输入密码"
+                        v-model="rpassword"
+                    />
+                </div>
+            </template>
+        </modal>
     </div>
 </template>
 <script>
 // 导入mapAction 演示一下 其实简单的项目没有必要
 import { mapActions } from 'vuex'
+import Modal from '../components/Modal'
 export default {
     name: 'login',
+    components: {
+        Modal
+    },
     data() {
         return {
             username: '',
             password: '',
-            userId: ''
+            userId: '',
+            showModal: false,
+            rusername: '',
+            rpassword: ''
         }
     },
     methods: {
@@ -101,23 +132,31 @@ export default {
                     })
                 })
                 .catch(err => {
-                    this.$message.error(err)
+                    if (err.status) {
+                        this.$message.error('输入框不能为空')
+                    } else {
+                        this.$message.error(err)
+                    }
                 })
         },
         ...mapActions(['saveUserName']),
         register() {
             this.axios
                 .post('/user/register', {
-                    //TODO 动态注册
-                    username: 'lzflzf',
-                    password: 'lzflzf',
-                    email: 'lzflzf@163.com'
+                    username: this.rusername,
+                    password: this.rpassword,
+                    email: Math.random()
                 })
                 .then(() => {
                     this.$message.success('注册成功')
+                    this.showModal = false
                 })
                 .catch(err => {
-                    this.$message.error(err)
+                    if (err.status) {
+                        this.$message.error('输入框不能为空')
+                    } else {
+                        this.$message.error(err)
+                    }
                 })
         }
     }
@@ -214,6 +253,22 @@ export default {
         }
         .copyright {
             margin-top: 13px;
+        }
+    }
+
+    // 模态框的 上面有重复的懒得删了
+    .input {
+        // display: inline-block;
+        width: 348px;
+        height: 50px;
+        border: 1px solid #e5e5e5;
+        margin: auto;
+        margin-bottom: 20px;
+        input {
+            width: 100%;
+            height: 100%;
+            border: none;
+            padding: 18px;
         }
     }
 }

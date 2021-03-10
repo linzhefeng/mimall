@@ -80,6 +80,9 @@ export default {
 @import '../assets/scss/config.scss';
 
 .modal {
+    /* 
+    用的vue内置的动画
+    */
     // 所有都加上动画效果
     transition: all 0.5s;
     &.slide-enter {
